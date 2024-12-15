@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
-const router = require("./src/routes/authRouter");
+const authRouter = require("./src/routes/authRouter");
+const contactRouter = require("./src/routes/contactRouter");
 const connectDb = require("./utils/db");
 const PORT = 8008;
 
@@ -12,7 +13,8 @@ app.get("/", (req,res)=>{
 })
 
 //routers
-app.use("/api/auth",router);
+app.use("/api/auth",authRouter);
+app.use("/api/contact",contactRouter);
 
 //DB Connect
 connectDb().then(()=>{
