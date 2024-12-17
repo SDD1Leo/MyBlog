@@ -20,7 +20,7 @@ export default function login() {
 
     const submit = async (e) => {
       e.preventDefault()
-      console.log(user);
+      // console.log(user);
       try {
         const response = await fetch("http://localhost:8008/api/auth/login",{
           method:"POST",
