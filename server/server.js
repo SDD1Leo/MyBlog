@@ -3,9 +3,19 @@ const app = express();
 const authRouter = require("./src/routes/authRouter");
 const contactRouter = require("./src/routes/contactRouter");
 const connectDb = require("./utils/db");
+const cors = require("cors");
 const PORT = 8008;
 
+
+//tackeling cors
+var corsOptions = {
+    origin: 'http://localhost:5173',
+    optionsSuccessStatus: 200
+  }
+   
 //middleware
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.get("/", (req,res)=>{

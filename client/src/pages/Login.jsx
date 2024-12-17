@@ -1,6 +1,8 @@
 import { useState } from "react"
+import { useNavigate } from "react-router-dom";
 
 export default function login() {
+    const navigate = useNavigate()
 
     const [user, setUser] = useState({
       email: '',
@@ -16,13 +18,34 @@ export default function login() {
       })
     }
 
-    const submit = (e) => {
+    const submit = async (e) => {
       e.preventDefault()
       console.log(user);
-      setUser({
-        email: '',
-        password: ''
-      })
+      try {
+        const response = await fetch("http://localhost:8008/api/auth/login",{
+          method:"POST",
+          headers:{
+            "Content-Type":"application/json",
+          },
+          body:JSON.stringify(user)
+        });
+
+        console.log(await response.json());
+        if(response.ok){
+          alert("login succesful")
+          setUser({
+            email: '',
+            password: ''
+          })
+          navigate("/")
+        }else{
+          alert("invalid credentials")
+          console.log("invalid user");
+        }
+        
+      } catch (error) {
+        console.log("login error",error);
+      }
     }
   
     return (
@@ -36,7 +59,7 @@ export default function login() {
       <p class="leading-relaxed mt-4">Poke slow-carb mixtape knausgaard, typewriter street art gentrify hammock starladder roathse. Craies vegan tousled etsy austin.</p>
     </div>
     <div class="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
-      <h2 class="text-gray-900 text-lg font-medium title-font mb-5">Sign Up</h2>
+      <h2 class="text-gray-900 text-lg font-medium title-font mb-5">Sign In</h2>
       <div class="relative mb-4">
         <input 
         type="email" 
@@ -57,7 +80,7 @@ export default function login() {
       </div>
       <button 
       type="submit"
-      class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Register</button>
+      class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Log-In</button>
       <p class="text-xs text-gray-500 mt-3">Literally you probably haven't heard of them jean shorts.</p>
     </div>
   </div>
