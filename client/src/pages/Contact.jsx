@@ -1,4 +1,33 @@
+import { useState } from "react"
+
 export default function Contact() {
+    const [message, setMessage] = useState({
+      username:"",
+      email:"",
+      message:"",
+    });
+
+    const formHandler = (e) => {
+      let name = e.target.name;
+      let value = e.target.value;
+      
+      setMessage({
+        ...message,
+        [name]:value,
+      })
+    }
+
+      const submit = (e)=>{
+        e.preventDefault()
+        console.log(message);
+        setMessage({
+          username:"",
+          email:"",
+          message:"",
+        })
+      }
+
+
     return (
       <>
       <div class="bg-white py-6 sm:py-8 lg:py-12">
@@ -8,25 +37,40 @@ export default function Contact() {
 
       <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">This is a section of some simple filler text, also known as placeholder text. It shares some characteristics of a real written text but is random or otherwise generated.</p>
     </div>
-    <form class="mx-auto grid max-w-screen-md gap-4 sm:grid-cols-2">
+    <form 
+    onClick={(e)=>{submit(e)}}
+    class="mx-auto grid max-w-screen-md gap-4 sm:grid-cols-2">
       
       <div class="sm:col-span-2">
-        <label for="company" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Subject*</label>
-        <input name="company" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+        <label for="username" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">username*</label>
+        <input 
+        name="username"
+        value={message.username}
+        onChange={(e)=>{formHandler(e)}}
+        class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
       </div>
 
       <div class="sm:col-span-2">
         <label for="email" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Email*</label>
-        <input name="email" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+        <input 
+        name="email"
+        value={message.email}
+        onChange={(e)=>{formHandler(e)}} 
+        class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
       </div>
 
       <div class="sm:col-span-2">
         <label for="message" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Message*</label>
-        <textarea name="message" class="h-64 w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"></textarea>
+        <textarea 
+        name="message" 
+        value={message.message}
+        onChange={(e)=>{formHandler(e)}}
+        class="h-64 w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring"></textarea>
       </div>
 
       <div class="flex items-center justify-between sm:col-span-2">
-        <button class="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">Send</button>
+        <button 
+        class="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">Send</button>
 
         <span class="text-sm text-gray-500">*Required</span>
       </div>

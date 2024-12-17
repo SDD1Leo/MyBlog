@@ -1,7 +1,7 @@
 function Footer() {
     return (  
         <>
-         <div class="bg-gray-100">
+         <div class="bg-gray-100 fixed bottom-0 w-screen ">
     <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
       <div class="flex items-center justify-between gap-4 py-8">
         <span class="text-sm text-gray-400"> © SDD1Leo - 2025 </span>
