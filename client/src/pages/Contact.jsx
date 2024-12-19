@@ -34,8 +34,28 @@ export default function Contact() {
       })
     }
 
-      const submit = (e)=>{
+      const submit = async(e)=>{
         e.preventDefault()
+        try {
+         
+          const response = await fetch("http://localhost:8008/api/contact",{
+          method:"POST",
+          headers:{
+            "Content-Type":"Application/json",
+          },
+          body:JSON.stringify(message),
+          })
+
+          if (response.ok) {
+            console.log("message send successfully");;
+          } else {
+            console.log("some error occured");;
+          }
+
+        } catch (error) {
+          console.log(`error at sending message ${error}`);
+        }
+
         console.log(message);
         setMessage({
           username:"",
