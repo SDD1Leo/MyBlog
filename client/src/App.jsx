@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Error from "./pages/Error";
+import Logout from "./pages/Logout";
 
 export default function App() {
   return (
@@ -16,9 +17,10 @@ export default function App() {
         <Navbar/>
         <Routes>
           <Route path="/" element = {<Home/>} />
-          <Route path="/about" element = {<About/>} />
+          <Route path="/about" element = {<About user="sdd"/>} />
           <Route path="/my-blog" element = {<MyBlog/>} />
           <Route path="/contact" element = {<Contact/>} />
+          <Route path="/logout" element = {<Logout/>} />
           <Route path="/register" element = {<Register/>} />
           <Route path="/login" element = {<Login/>} />
           <Route path="*" element = {<Error/>} />

@@ -1,4 +1,4 @@
-export default function About() {
+export default function About(props) {
     return (
       <>
       <div class="bg-white py-6 sm:py-8 lg:py-12">
@@ -11,7 +11,7 @@ export default function About() {
       </div>
 
       <div class="md:pt-8">
-        <p class="text-center font-bold text-indigo-500 md:text-left">Who we are</p>
+        <p class="text-center font-bold text-indigo-500 md:text-left">Welcome {props.user}</p>
 
         <h1 class="mb-4 text-center text-2xl font-bold text-gray-800 sm:text-3xl md:mb-6 md:text-left">Our competitive advantage</h1>
 
