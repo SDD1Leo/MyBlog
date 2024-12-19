@@ -1,12 +1,29 @@
-import { useState } from "react"
+import { useState } from "react";
+import { useAuth } from "../store/auth";
 
 export default function Contact() {
-    const [message, setMessage] = useState({
-      username:"",
-      email:"",
-      message:"",
-    });
 
+  
+  // console.log(user);
+  
+  const [message, setMessage] = useState({
+    username:"",
+    email:"",
+    message:"",
+  });
+  const { user } = useAuth();
+
+  const [userData, setUserData] = useState(true);
+
+  if (userData && user) {
+    setMessage({
+      username: user.username,
+      email: user.email,
+      message: "",
+    });
+    setUserData(false);
+  }
+  
     const formHandler = (e) => {
       let name = e.target.name;
       let value = e.target.value;
@@ -38,7 +55,7 @@ export default function Contact() {
       <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">This is a section of some simple filler text, also known as placeholder text. It shares some characteristics of a real written text but is random or otherwise generated.</p>
     </div>
     <form 
-    onClick={(e)=>{submit(e)}}
+    onSubmit={(e)=>{submit(e)}}
     class="mx-auto grid max-w-screen-md gap-4 sm:grid-cols-2">
       
       <div class="sm:col-span-2">
