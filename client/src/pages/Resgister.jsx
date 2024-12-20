@@ -1,6 +1,7 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom"
 import { useAuth } from "../store/auth";
+import { toast } from "react-toastify";
 
 export default function Register() {
     const navigate = useNavigate()
@@ -35,7 +36,10 @@ export default function Register() {
         });
 
         const response_data = await response.json();
+        console.log(response_data);
         if (response.ok) {
+          toast.success("signin succesful");
+
             storeTokenInLs(response_data.token);
           setUser({
             username : '',
@@ -43,9 +47,15 @@ export default function Register() {
             email: '',
             password: ''
           })
+          navigate("/")
+          setTimeout(function() {
+            location.reload();
+        }, 2500);
+        }else{
+          toast.error(response_data.extraDetails ? response_data.extraDetails : response_data.message);
         }
 
-        navigate("/")
+        
       } catch (error) {
         console.log("registration error :",error);
       }      
@@ -102,7 +112,7 @@ export default function Register() {
       <button 
       type="submit"
       class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Register</button>
-      <p class="text-xs text-gray-500 mt-3">Literally you probably haven't heard of them jean shorts.</p>
+      <p class="text-s text-gray-500 mt-3">Already a user? <NavLink to="/login" className="underline text-blue-800 hover:text-blue-950">Sign In</NavLink> </p>
     </div>
   </div>
 </form>

@@ -18,7 +18,7 @@ const register = async (req, res) => {
         //if user already exists in db
         const userExist = await User.findOne({ email: email });
         if (userExist) {
-            return res.status(400).json({ msg: "user already exists." });
+            return res.status(400).json({ message: "user already exists." });
         }
         //hash the password
         // const saltrounds = await bcrypt.genSalt(10)
@@ -48,12 +48,12 @@ const login = async (req, res) => {
         //if user exists or not
         const userExist = await User.findOne({ email: email });
         if (!userExist) {
-            return res.status(401).json({ msg: "invalid user or paswword" });
+            return res.status(401).json({ message: "invalid user or password" });
         }
         //compare password
         const comparePassword = await bcrypt.compare(password, userExist.password);
         if (!comparePassword) {
-            return res.status(401).json({ msg: "invalid user or password" });
+            return res.status(401).json({ message: "invalid user or password" });
         } else {
             res.status(200).json({
                 msg: "user login successfull",

@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const errorMiddleware = require("./src/middleware/errorMiddleware");
 const authRouter = require("./src/routes/authRouter");
 const contactRouter = require("./src/routes/contactRouter");
 const blogRouter = require("./src/routes/blogRouter");
@@ -19,6 +20,7 @@ var corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
+
 app.get("/", (req,res)=>{
     res.send("hello");
 })
@@ -27,6 +29,9 @@ app.get("/", (req,res)=>{
 app.use("/api/auth",authRouter);
 app.use("/api/contact",contactRouter);
 app.use("/api/blog",blogRouter);
+
+//error middleware
+app.use(errorMiddleware);
 
 //DB Connect
 connectDb().then(()=>{

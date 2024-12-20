@@ -1,6 +1,8 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth";
+import { toast } from "react-toastify";
+
 
 export default function login() {
     const navigate = useNavigate()
@@ -34,7 +36,7 @@ export default function login() {
 
         const response_data = await response.json();
         if(response.ok){
-          alert("login succesful")
+          toast.success("login succesful")
           // localStorage.setItem("token",response_data.token)
           storeTokenInLs(response_data.token)
           setUser({
@@ -42,8 +44,11 @@ export default function login() {
             password: ''
           })
           navigate("/")
+          setTimeout(function() {
+            location.reload();
+        }, 2500);
         }else{
-          alert("invalid credentials")
+          toast.error(response_data.message?response_data.message : "error response")
           console.log("invalid user");
         }
         
@@ -85,7 +90,7 @@ export default function login() {
       <button 
       type="submit"
       class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Log-In</button>
-      <p class="text-xs text-gray-500 mt-3">Literally you probably haven't heard of them jean shorts.</p>
+      <p class="text-s text-gray-500 mt-3">New to Vite? <NavLink to="/register" className="underline text-blue-800 hover:text-blue-950">Sign Up</NavLink> </p>
     </div>
   </div>
 </form>

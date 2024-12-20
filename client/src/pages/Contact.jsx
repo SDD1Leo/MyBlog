@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../store/auth";
+import { toast } from "react-toastify";
 
 export default function Contact() {
 
@@ -47,9 +48,9 @@ export default function Contact() {
           })
 
           if (response.ok) {
-            console.log("message send successfully");;
+            toast.success("message send successfully");
           } else {
-            console.log("some error occured");;
+            toast.error("some error occured");;
           }
 
         } catch (error) {
@@ -58,8 +59,6 @@ export default function Contact() {
 
         console.log(message);
         setMessage({
-          username:"",
-          email:"",
           message:"",
         })
       }
