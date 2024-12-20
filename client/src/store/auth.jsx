@@ -5,8 +5,10 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(localStorage.getItem("token"));
     const [user, setUser] = useState("");
+    const [content, setContent] = useState([]);
 
     const storeTokenInLs = (servertoken)=>{
+        setToken(servertoken);
         return localStorage.setItem("token",servertoken)
     }
 
@@ -28,7 +30,7 @@ export const AuthProvider = ({ children }) => {
             if (response.ok) {
                 const data = await response.json();
                 setUser(data.userData)
-                // console.log(data.userData);
+                // console.log(user);
             } else {
                 console.error("error fetching user data");
             }
@@ -37,11 +39,34 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+
+    const blogFetch = async() => {
+        try {
+            const response = await fetch("http://localhost:8008/api/blog",{
+                method:"GET"
+            })
+            if (response.ok) {
+                const data = await response.json();
+                // console.log(data);
+                setContent(data);
+                // console.log(content);
+                
+            } else {
+                console.error("error fetching blog data");
+            }
+            
+        } catch (error) {
+            console.log(`blog section error ${error}`);
+        }
+    }
+
+
     useEffect(() => {
         userAuth()
+        blogFetch()
     }, []);
 
-    return <AuthContext.Provider value={{ isLoggedIn ,storeTokenInLs , logoutUser , user}}>
+    return <AuthContext.Provider value={{ isLoggedIn ,storeTokenInLs , logoutUser , user , content}}>
         {children}
     </AuthContext.Provider>
 }

@@ -45,7 +45,7 @@ export default function Register() {
           })
         }
 
-        navigate("/login")
+        navigate("/")
       } catch (error) {
         console.log("registration error :",error);
       }      
