@@ -9,7 +9,7 @@ function Error() {
           <path d="M96 0V47L48 94H0V47L48 0H96Z" />
         </svg>
 
-        Flowrift
+        Admin
       </a>
 
       <p class="mb-4 text-sm font-semibold uppercase text-indigo-500 md:text-base">That’s a 404</p>

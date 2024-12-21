@@ -9,6 +9,11 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Error from "./pages/Error";
 import Logout from "./pages/Logout";
+import Admin from "./pages/Admin";
+import AdminUser from "./pages/AdminUser";
+import AdminContact from "./pages/AdminContact";
+import AdminMyBlog from "./pages/AdminMyBlog";
+
 
 export default function App() {
   return (
@@ -23,6 +28,11 @@ export default function App() {
           <Route path="/logout" element = {<Logout/>} />
           <Route path="/register" element = {<Register/>} />
           <Route path="/login" element = {<Login/>} />
+          <Route path="/admin" element = {<Admin/>}>
+            <Route path="users" element = {<AdminUser/>} />
+            <Route path="contacts" element = {<AdminContact/>} />
+            <Route path="my-blogs" element = {<AdminMyBlog/>} />
+          </Route>
           <Route path="*" element = {<Error/>} />
         </Routes>
         <Footer/>

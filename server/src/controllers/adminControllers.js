@@ -1,5 +1,6 @@
 const User = require("../models/userModel");
 const Contact = require("../models/contactModel");
+const Myblog = require("../models/blogModel");
 
 
 const users = async(req,res) => {
@@ -42,4 +43,42 @@ const contacts = async(req,res) => {
     
 }
 
-module.exports = { users, contacts };
+const deleteUserById = async(req,res)=>{
+    const adminData = req.user;
+    if (adminData.isAdmin) {
+        try {
+            const id = req.params.id;
+            await User.deleteOne({email : id})
+            return res.status(201).json({message:"user deleted successfully."});
+        } catch (error) {
+            res.status(400).json({message:"delete user by id error"})
+        }
+    } else {
+        res.status(404).json({message:"Unauthorized Access"})
+    }
+    
+
+}
+
+const myblog = async(req,res) => {
+    const adminData = req.user;
+    if (adminData.isAdmin) {
+        try {
+            //destructure
+            const { img , header , text } = req.body;
+            //put in db
+            const blogCreated = Myblog.create({
+                img:img,
+                header:header,
+                text:text,
+            });
+            res.status(200).json("blog created successfully");
+        } catch (error) {
+            res.status(400).json({message:"blog adding error"})
+        }
+    } else {
+        res.status(404).json({message:"Unauthorized Access"})
+    }
+}
+
+module.exports = { users, contacts ,deleteUserById ,myblog};

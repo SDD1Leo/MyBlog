@@ -61,13 +61,15 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    
+
 
     useEffect(() => {
         userAuth()
         blogFetch()
     }, []);
 
-    return <AuthContext.Provider value={{ isLoggedIn ,storeTokenInLs , logoutUser , user , content}}>
+    return <AuthContext.Provider value={{ isLoggedIn ,storeTokenInLs , logoutUser , user , content, token}}>
         {children}
     </AuthContext.Provider>
 }
