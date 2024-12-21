@@ -81,4 +81,19 @@ const myblog = async(req,res) => {
     }
 }
 
-module.exports = { users, contacts ,deleteUserById ,myblog};
+const deletemyblog = async(req,res) =>{
+    const adminData = req.user;
+    if (adminData.isAdmin) {
+        try {
+            const id = req.params.id;
+            await Myblog.deleteOne({_id:id})
+            return res.status(200).json("blog deleted successfully");
+        } catch (error) {
+            res.status(400).json({message:"blog deleting error"})
+        }
+    } else {
+        res.status(404).json({message:"Unauthorized Access"})
+    }
+}
+
+module.exports = { users, contacts ,deleteUserById , myblog , deletemyblog};

@@ -69,7 +69,7 @@ export const AuthProvider = ({ children }) => {
         blogFetch()
     }, []);
 
-    return <AuthContext.Provider value={{ isLoggedIn ,storeTokenInLs , logoutUser , user , content, token}}>
+    return <AuthContext.Provider value={{ isLoggedIn ,storeTokenInLs , logoutUser , user, blogFetch , content, token}}>
         {children}
     </AuthContext.Provider>
 }

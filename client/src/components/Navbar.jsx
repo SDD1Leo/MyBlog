@@ -3,7 +3,7 @@ import { useAuth } from "../store/auth"
 
 
 export default function Navbar() {
-    const { isLoggedIn } = useAuth();
+    const { isLoggedIn , user } = useAuth();
     return (
         <>
             <nav class="bg-gray-200 shadow shadow-gray-300 w-100 px-8 md:px-auto">
@@ -25,6 +25,14 @@ export default function Navbar() {
                             ):
                             (<></>)}
                             <li class="md:px-4 md:py-2 hover:text-indigo-400 active:text-blue-600"><NavLink to="/contact">Contact</NavLink></li>
+                            {
+                                user.isAdmin?(
+                                    <li class="md:px-4 md:py-2 hover:text-indigo-400 active:text-blue-600"><NavLink to="/admin">Admin</NavLink></li>
+                                ):(
+                                   <>
+                                   </> 
+                                )
+                            }
                         </ul>
                     </div>
                     <div class="order-2 md:order-3 flex items-center justify-between">

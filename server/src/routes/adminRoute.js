@@ -7,5 +7,6 @@ router.route("/users").get(authMiddleware,adminControllers.users);
 router.route("/users/delete/:id").delete(authMiddleware,adminControllers.deleteUserById);
 router.route("/contacts").get(authMiddleware,adminControllers.contacts);
 router.route("/myblog").post(authMiddleware,adminControllers.myblog);
+router.route("/myblog/delete/:id").delete(authMiddleware,adminControllers.deletemyblog);
 
 module.exports = router;

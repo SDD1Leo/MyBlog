@@ -8,7 +8,7 @@ const jwtGenerator = (username,email,isAdmin) => {
         isAdmin: isAdmin,
     };
 
-    return jwt.sign(payload,process.env.JWT_SECRET,{expiresIn:'1hr'});
+    return jwt.sign(payload,process.env.JWT_SECRET,{expiresIn:'5hr'});
 };
 
 module.exports = jwtGenerator;
