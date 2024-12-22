@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 8008;
 
 //tackeling cors
 var corsOptions = {
-    origin: 'http://localhost:5173',
+    origin: 'https://myblog-client-izfd.onrender.com',
     optionsSuccessStatus: 200
   }
    
