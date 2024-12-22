@@ -26,7 +26,7 @@ function Usercards(props) {
 
     return (
         <div className="w-full my-6 py-5 px-9 border-2 rounded-md drop-shadow-md flex items-center justify-between">
-            <ul className="flex w-2/3 justify-between">
+            <ul className="flex flex-col lg:flex-row w-2/3 justify-between">
                 <li className="w-1/3">Username: {props.un}</li>
                 <li className="w-1/3">Name: {props.n}</li>
                 <li className="w-1/3">Email: {props.e}</li>

@@ -70,9 +70,9 @@ function AdminMyBlog() {
 
 
   return (
-    <div class="bg-white py-6 flex flex-row justify-start w-full sm:py-8 lg:py-12">
+    <div class="bg-white py-6 flex flex-col lg:flex-row  justify-start w-full sm:py-8 lg:py-12">
 
-      <div class="w-4/6 px-4 md:px-8">
+      <div class="lg:w-4/6 px-4 md:px-8">
         <div class="mb-10 md:mb-16">
           <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Blog Writer.</h2>
 
@@ -130,7 +130,7 @@ function AdminMyBlog() {
       </div>
 
 
-      <div className="h-screen w-2/6 border-2 p-6 flex flex-col items-center overflow-y-scroll ">
+      <div className="h-screen my-4 lg:my-0 lg:w-2/6 border-2 p-6 flex flex-col items-center overflow-y-scroll ">
         <h2 class="text-center text-xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Blogs</h2>
         {
           content.map(function (elem) {
