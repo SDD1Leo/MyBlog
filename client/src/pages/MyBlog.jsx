@@ -6,7 +6,7 @@ export default function MyBlog() {
 
   const { content } = useAuth();
 
-  console.log(content);
+  // console.log(content);
   
   return (
     <>
@@ -15,7 +15,7 @@ export default function MyBlog() {
           <div class="mb-10 md:mb-16">
             <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Blog</h2>
 
-            <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">This is a section of some simple filler text, also known as placeholder text. It shares some characteristics of a real written text but is random or otherwise generated.</p>
+            <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">This section is for sharing insights into the components and technologies used to build this website, showcasing the journey behind its development.</p>
           </div>
 
 
@@ -24,7 +24,7 @@ export default function MyBlog() {
             {/* <Cards /> */}
             {
               content.map(function (elem) {
-                return <Cards img={elem.img} h={elem.header} t={elem.text}  />
+                return <Cards img={elem.img} h={elem.header} t={elem.text} l={elem.link}  />
               })
             }
           </div>

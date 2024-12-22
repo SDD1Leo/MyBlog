@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 
 export default function Register() {
     const navigate = useNavigate()
-    const { storeTokenInLs } = useAuth()
+    const { storeTokenInLs,API } = useAuth()
 
     const [user, setUser] = useState({
       username : '',
@@ -27,7 +27,7 @@ export default function Register() {
       e.preventDefault()
       // console.log(user);
       try {
-        const response = await fetch(`http://localhost:8008/api/auth/register`,{
+        const response = await fetch(`${API}/api/auth/register`,{
           method:"POST",
           headers:{
             "Content-Type":"application/json",

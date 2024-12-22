@@ -4,12 +4,13 @@ import { toast } from "react-toastify";
 
 
 function AdminMyBlog() {
-  const { token, content } = useAuth();
+  const { token, content ,API } = useAuth();
 
   const [blog, setBlog] = useState({
     img: "",
     header: "",
     text: "",
+    link:"",
   });
 
   const handleInput = (e) => {
@@ -23,7 +24,7 @@ function AdminMyBlog() {
   const submit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8008/api/admin/myblog", {
+      const response = await fetch(`${API}/api/admin/myblog`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,6 +39,7 @@ function AdminMyBlog() {
           img: "",
           header: "",
           text: "",
+          link:"",
         })
       } else {
         toast.error("Blog not created");
@@ -50,7 +52,7 @@ function AdminMyBlog() {
 
   const del = async(id)=>{
     try {
-      const response = await fetch(`http://localhost:8008/api/admin/myblog/delete/${id}`,{
+      const response = await fetch(`${API}/api/admin/myblog/delete/${id}`,{
         method:"DELETE",
         headers:{
           "Authorization":`Bearer ${token}`,
@@ -101,6 +103,15 @@ function AdminMyBlog() {
           </div>
 
           <div class="sm:col-span-2">
+            <label for="link" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">link*</label>
+            <input
+              name="link"
+              value={blog.link}
+              onChange={(e) => { handleInput(e) }}
+              class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" />
+          </div>
+
+          <div class="sm:col-span-2">
             <label for="text" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">text*</label>
             <textarea
               name="text"
@@ -119,7 +130,7 @@ function AdminMyBlog() {
       </div>
 
 
-      <div className="h-full w-2/6 border-2 p-6 flex flex-col items-center">
+      <div className="h-screen w-2/6 border-2 p-6 flex flex-col items-center overflow-y-scroll ">
         <h2 class="text-center text-xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Blogs</h2>
         {
           content.map(function (elem) {

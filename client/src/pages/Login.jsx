@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 export default function login() {
     const navigate = useNavigate()
-    const {storeTokenInLs} = useAuth();
+    const {storeTokenInLs,API} = useAuth();
 
     const [user, setUser] = useState({
       email: '',
@@ -26,7 +26,7 @@ export default function login() {
       e.preventDefault()
       // console.log(user);
       try {
-        const response = await fetch("http://localhost:8008/api/auth/login",{
+        const response = await fetch(`${API}/api/auth/login`,{
           method:"POST",
           headers:{
             "Content-Type":"application/json",

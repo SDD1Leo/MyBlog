@@ -2,9 +2,9 @@ import Usercards from "../components/Usercards";
 import { useEffect, useState } from "react";
 import { useAuth } from "../store/auth";
 
-const userFetch = async (token) => {
+const userFetch = async (token,API) => {
     try {
-        const response = await fetch("http://localhost:8008/api/admin/users", {
+        const response = await fetch(`${API}/api/admin/users`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -24,12 +24,12 @@ const userFetch = async (token) => {
 };
 
 function AdminUser() {
-    const { token } = useAuth();
+    const { token, API } = useAuth();
     const [usersArray, setUsersArray] = useState([]);
 
     useEffect(() => {
         const fetchUsers = async () => {
-            const usersData = await userFetch(token);
+            const usersData = await userFetch(token,API);
             if (usersData) {
                 setUsersArray(usersData);
             }
@@ -45,7 +45,7 @@ function AdminUser() {
                     un={elem.username}
                     n={elem.name}
                     e={elem.email}
-                    userFetch={() => userFetch(token).then(setUsersArray)} // Pass userFetch as a prop
+                    userFetch={() => userFetch(token,API).then(setUsersArray)} // Pass userFetch as a prop
                     token={token} // Pass token as a prop
                 />
             ))}

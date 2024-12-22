@@ -6,6 +6,9 @@ export const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(localStorage.getItem("token"));
     const [user, setUser] = useState("");
     const [content, setContent] = useState([]);
+    const API = import.meta.env.VITE_HOST_API_LINK;
+
+    // console.log(API);
 
     const storeTokenInLs = (servertoken)=>{
         setToken(servertoken);
@@ -22,7 +25,7 @@ export const AuthProvider = ({ children }) => {
     //tackle jwt authentication
     const userAuth = async() => {
         try {
-            const response = await fetch("http://localhost:8008/api/auth/user",{
+            const response = await fetch(`${API}/api/auth/user`,{
                 method:"GET",
                 headers:{
                     Authorization:`Bearer ${token}`
@@ -43,7 +46,7 @@ export const AuthProvider = ({ children }) => {
 
     const blogFetch = async() => {
         try {
-            const response = await fetch("http://localhost:8008/api/blog",{
+            const response = await fetch(`${API}/api/blog`,{
                 method:"GET"
             })
             if (response.ok) {
@@ -69,7 +72,7 @@ export const AuthProvider = ({ children }) => {
         blogFetch()
     }, []);
 
-    return <AuthContext.Provider value={{ isLoggedIn ,storeTokenInLs , logoutUser , user, blogFetch , content, token}}>
+    return <AuthContext.Provider value={{ isLoggedIn ,storeTokenInLs , logoutUser , user, blogFetch , content, token , API}}>
         {children}
     </AuthContext.Provider>
 }

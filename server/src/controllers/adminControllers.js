@@ -65,12 +65,13 @@ const myblog = async(req,res) => {
     if (adminData.isAdmin) {
         try {
             //destructure
-            const { img , header , text } = req.body;
+            const { img , header , text , link } = req.body;
             //put in db
             const blogCreated = Myblog.create({
                 img:img,
                 header:header,
                 text:text,
+                link:link,
             });
             res.status(200).json("blog created successfully");
         } catch (error) {

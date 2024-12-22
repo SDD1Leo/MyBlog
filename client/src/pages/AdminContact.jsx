@@ -6,11 +6,11 @@ import { useAuth } from "../store/auth";
 
 function AdminContact() {
 
-    const {token} = useAuth()
+    const {token,API} = useAuth()
     const [contactsArray, setContactsArray] = useState([]);
     const contactFetch = async () => {
         try {
-            const response = await fetch("http://localhost:8008/api/admin/contacts", {
+            const response = await fetch(`${API}/api/admin/contacts`, {
                 method: "GET",
                 headers: {
                     Authorization: `Bearer ${token}`,

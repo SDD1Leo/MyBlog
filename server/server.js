@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const errorMiddleware = require("./src/middleware/errorMiddleware");
@@ -7,7 +8,7 @@ const blogRouter = require("./src/routes/blogRouter");
 const adminRouter = require("./src/routes/adminRoute");
 const connectDb = require("./utils/db");
 const cors = require("cors");
-const PORT = 8008;
+const PORT = process.env.PORT || 8008;
 
 
 //tackeling cors

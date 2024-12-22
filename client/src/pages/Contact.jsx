@@ -12,7 +12,7 @@ export default function Contact() {
     email:"",
     message:"",
   });
-  const { user } = useAuth();
+  const { user , API } = useAuth();
 
   const [userData, setUserData] = useState(true);
 
@@ -39,7 +39,7 @@ export default function Contact() {
         e.preventDefault()
         try {
          
-          const response = await fetch("http://localhost:8008/api/contact",{
+          const response = await fetch(`${API}/api/contact`,{
           method:"POST",
           headers:{
             "Content-Type":"Application/json",

@@ -1,9 +1,12 @@
+import { toast } from "react-toastify";
+import { useAuth } from "../store/auth";
+
 function Usercards(props) {
     const { token, userFetch } = props; // Destructure token and userFetch from props
-
+    const {API} = useAuth();
     const deleteUser = async (id) => {
         try {
-            const response = await fetch(`http://localhost:8008/api/admin/users/delete/${id}`, {
+            const response = await fetch(`${API}/api/admin/users/delete/${id}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -11,7 +14,7 @@ function Usercards(props) {
             });
             if (response.ok) {
                 const data = await response.json();
-                console.log(data);
+                toast.success("user deleted successfully.")
                 userFetch(); // Call userFetch after successful deletion
             } else {
                 console.log("Error deleting data");

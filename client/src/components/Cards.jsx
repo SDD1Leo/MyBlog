@@ -13,6 +13,7 @@ function Cards(props) {
           </h2>
 
           <p class="mb-8 text-gray-500">{props.t}</p>
+          <a href={props.l} target="_blank" className="text-sm text-blue-400 hover:text-blue-500">Read More</a>
         </div>
       </div>
         </>

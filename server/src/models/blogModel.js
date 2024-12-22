@@ -13,6 +13,10 @@ const blogSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
+    link: {
+        type: String,
+        require: true,
+    },
 })
 
 const Myblog = new mongoose.model('Myblog',blogSchema);
